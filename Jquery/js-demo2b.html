@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Second Web Page</title>
+  <link rel="stylesheet" href="demo.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // When the button is clicked, load the data
+      $("#btn").click(function(event){
+        // Load JSON data from the file
+        $.getJSON("data.json", function(data) {
+          // Set the page title
+          $("header").html(data.title);
+          
+          // Construct the table HTML dynamically
+          var tableHTML = "<caption>" + data.title + "</caption>";
+          tableHTML += "<thead>";
+          tableHTML += "<tr><th>" + data.heading + "</th><th>" + data.head1 + "</th><th>" + data.head2 + "</th><th>" + data.head3 + "</th><th>" + data.head4 + "</th></tr>";
+          tableHTML += "</thead>";
+          tableHTML += "<tbody>";
+          
+          // Add Calories row
+          tableHTML += "<tr><td>" + data.subheadcal + "</td><td>" + data.cal1 + "</td><td>" + data.cal2 + "</td><td>" + data.cal3 + "</td><td>" + data.cal4 + "</td></tr>";
+          
+          // Add Fat row
+          tableHTML += "<tr><td>" + data.subheadfat + "</td><td>" + data.fat1 + "</td><td>" + data.fat2 + "</td><td>" + data.fat3 + "</td><td>" + data.fat4 + "</td></tr>";
+          
+          // Add Vendor row
+          tableHTML += "<tr><td>" + data.subheadven + "</td><td>" + data.ven1 + "</td><td>" + data.ven2 + "</td><td>" + data.ven3 + "</td><td>" + data.ven4 + "</td></tr>";
+          
+          tableHTML += "</tbody>";
+          
+          // Add the table to the HTML
+          $("main table").html(tableHTML);
+        });
+      });
+    });
+  </script>
+</head>  
+
+<body>
+
+<div id="container">
+
+  <header>My Web Site Brand</header>
+  <nav>
+    <ul>
+      <li><a href="js-demo2.html">Home</a></li>
+      <li><a href="js-demo2b.html">About</a></li>
+      <li><a href="js-demo2d.html">Gallery</a></li>
+      <li><a href="js-demo2c.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>My Second Heading</h1>
+    <p>My Second paragraph.</p>
+
+    <!-- Table is initially empty. It will be populated with data when the button is clicked. -->
+    <table></table>
+
+    <input type="button" id="btn" value="Load Data" style="margin-top:20px;" />
+  </main>
+
+  <footer>&copy; Copyright 2020</footer>
+
+</div>
+
+</body>
+</html>
